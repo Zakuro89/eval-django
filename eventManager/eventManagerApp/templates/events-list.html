@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Liste des événements</title>
+  </head>
+  <body>
+    <h1>Liste des évènements</h1>
+
+    {% for event in events %}
+    <div>
+      <a href="{% url 'event-details' event.id %}">
+        <h2>{{ event.title }}</h2>
+      </a>
+
+      <p>Date : {{ event.date }}</p>
+      <p>Description: {{event.description}}</p>
+      <p>Participants : {{ event.nb_participants }}</p>
+    </div>
+    <hr />
+    {% endfor %}
+  </body>
+</html>

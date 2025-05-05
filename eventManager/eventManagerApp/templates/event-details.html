@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Détails de l'événement</title>
+  </head>
+  <body>
+    <h1>{{ event.title }}</h1>
+
+    <p>Date : {{ event.date }}</p>
+    <p>Description : {{ event.description }}</p>
+    <p>Participants : {{ event.nb_participants }}</p>
+
+    {% if user.is_authenticated %}
+
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="event_id" value="{{ event.id }}" />
+      <button type="submit">Participer</button>
+    </form>
+
+    {% else %}
+    <p><em>Connexion requise pour participer à l'évènement.</em></p>
+
+    <a href="{% url 'login' %}">Connexion</a>
+
+    {% endif %}
+
+    <hr />
+    <a href="{% url 'events-list' %}">Retour à la liste des événements</a>
+  </body>
+</html>
