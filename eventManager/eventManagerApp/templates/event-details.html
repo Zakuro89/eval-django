@@ -10,15 +10,16 @@
     <p>Description : {{ event.description }}</p>
     <p>Participants : {{ event.nb_participants }}</p>
 
-    {% if user.is_authenticated %}
-
+    {% if user.is_authenticated %} {% if has_participated %}
+    <p><strong>Participation déjà prise en compte 🟢 </strong></p>
+    {% else %}
     <form method="post">
       {% csrf_token %}
       <input type="hidden" name="event_id" value="{{ event.id }}" />
       <button type="submit">Participer</button>
     </form>
 
-    {% else %}
+    {% endif %} {% else %}
     <p><em>Connexion requise pour participer à l'évènement.</em></p>
 
     <a href="{% url 'login' %}">Connexion</a>

@@ -32,13 +32,17 @@ def event_details(request, event_id):
    
   event = get_object_or_404(T_Event, id=event_id)
   event.nb_participants = event.participations.count()
+  
+  has_participated = T_Participation.objects.filter(user_id=request.user, event_id=event).exists()
 
   if request.method == 'POST' and request.user.is_authenticated:
     T_Participation.objects.get_or_create(user_id=request.user, event_id=event)
+    has_participated = True
   
   return render(request, 'event-details.html', {
     'event': event,
-    'user': request.user
+    'user': request.user,
+    'has_participated': has_participated
   })
 
        
