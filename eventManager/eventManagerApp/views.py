@@ -4,8 +4,6 @@ from .models import T_Event, T_Participation
 from django.db.models import Count
 from django.contrib.auth import authenticate, login as auth_login
 
-def index(request):
-  return HttpResponse("Hello")
 
 def login(request):
   error = None

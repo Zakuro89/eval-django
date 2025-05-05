@@ -16,11 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from eventManagerApp.views import events_list, login, index, event_details
+from eventManagerApp.views import events_list, login, event_details
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index'),
+    path('', events_list, name='index'),
     path('events-list/', events_list, name="events-list"),
     path('login/', login, name="login"),
     path('events/<int:event_id>/', event_details, name='event-details')
